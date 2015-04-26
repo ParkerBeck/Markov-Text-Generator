@@ -18,3 +18,22 @@
 	<vector>
 	<string>
 
+1430029612 source:/home/user/BECK_CSCI2270_FinalProject/MarkovChain.cpp
+	"MarkovChain.h"
+	<map>
+	<vector>
+	<iostream>
+	<queue>
+	<fstream>
+	<sstream>
+
+1430026087 /home/user/BECK_CSCI2270_FinalProject/MarkovChain.h
+	<map>
+	<vector>
+	<string>
+
+1430029118 source:/home/user/BECK_CSCI2270_FinalProject/main.cpp
+	<iostream>
+	<string>
+	"MarkovChain.h"
+

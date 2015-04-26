@@ -12,6 +12,7 @@ int main()
 {
     MarkovChain mC;
     mC.generateFromFile("testFile1.txt");
+    mC.generateText("penis");
 
     return 0;
 }

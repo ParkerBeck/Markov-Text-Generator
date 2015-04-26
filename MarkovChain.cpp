@@ -112,7 +112,7 @@ void MarkovChain::generateFromFile(std::string fileName)
 
         }
         else if(wordEnding == '.' || wordEnding == '"' || wordEnding == '?' || wordEnding == ')' ||
-                wordEnding == '!' || wordEnding == ':' || wordEnding == ';')
+                wordEnding == '!' || wordEnding == ':' || wordEnding == ';' || wordEnding == ',')
         {
             if(word[word.size()-2] == '.' || word[word.size()-2] == ',' ||
                     word[word.size()-2] == '!' || word[word.size()-2] == '?')
@@ -151,5 +151,34 @@ void MarkovChain::generateFromFile(std::string fileName)
             }
             incNextWord(word, nextWord);
         }
+    }
+}
+void MarkovChain::generateText(std::string seedWord)
+{
+    std::string currentWordString = seedWord;
+    Word* currentWord = findWord(seedWord);
+    int maxSentences = nextAppearanceSum(findWord(".")->nextWords)+1;
+    int sentences = 0;
+    std::ofstream out(currentWordString);
+    while(sentences<maxSentences)
+    {
+        out<<currentWordString<< " ";
+        double randNum = ((double) rand() / (RAND_MAX));
+        int tot = nextAppearanceSum(currentWord->nextWords);
+        for(int i = 0; i < currentWord->nextWords.size(); i++)
+        {
+            if(randNum < (double)currentWord->nextWords[i].appearanceCount/tot)
+            {
+                currentWordString = currentWord->nextWords[i].word;
+                cout<<currentWordString<<endl;
+                break;
+            }
+            randNum = randNum - (double)currentWord->nextWords[i].appearanceCount/tot;
+
+        }
+        if(currentWordString == "."){
+            sentences++;
+        }
+        currentWord = findWord(currentWordString);
     }
 }

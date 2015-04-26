@@ -1,0 +1,5 @@
+Period is adjacent to period("it's not actually a period, it counts quotes as periods so if after a quote there is a period it links it to itself)
+commas still cause errors.*Fixed
+space between word and period.
+Need more functions.
+seg faults on seed words not in file.
