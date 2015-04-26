@@ -11,6 +11,7 @@ void printMenu()
 int main()
 {
     MarkovChain mC;
+    mC.generateFromFile("testFile1.txt");
 
     return 0;
 }
