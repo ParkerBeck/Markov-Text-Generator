@@ -32,9 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/MarkovChain.h" />
+		<Unit filename="MarkovChain.cpp" />
+		<Unit filename="MarkovChain.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/MarkovChain.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
