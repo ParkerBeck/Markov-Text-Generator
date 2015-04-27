@@ -5,6 +5,7 @@
 #include <queue>
 #include <fstream>
 #include <sstream>
+#include <random>
 using namespace std;
 
 MarkovChain::MarkovChain()
@@ -153,10 +154,14 @@ void MarkovChain::generateFromFile(std::string fileName)
         }
     }
 }
-void MarkovChain::generateText(std::string seedWord)
+bool MarkovChain::generateText(std::string seedWord)
 {
     std::string currentWordString = seedWord;
     Word* currentWord = findWord(seedWord);
+    if(currentWord == NULL)
+    {
+        return false;
+    }
     int maxSentences = nextAppearanceSum(findWord(".")->nextWords)+1;
     int sentences = 0;
     std::ofstream out(currentWordString);
@@ -181,4 +186,6 @@ void MarkovChain::generateText(std::string seedWord)
         }
         currentWord = findWord(currentWordString);
     }
+    out.close();
+    return true;
 }

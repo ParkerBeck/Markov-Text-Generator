@@ -28,7 +28,7 @@ class MarkovChain
         Word* findWord(std::string word);
         int findNextWord(std::string word, std::vector<NextWord> nextWords);
         int nextAppearanceSum(std::vector<NextWord> nextWords);
-        void generateText(std::string seedWord);
+        bool generateText(std::string seedWord);
         void generateFromFile(std::string fileName);
 
     protected:
