@@ -7,6 +7,7 @@
 #include <sstream>
 #include <random>
 #include <time.h>
+#include <algorithm>
 using namespace std;
 
 MarkovChain::MarkovChain()
@@ -91,6 +92,7 @@ void MarkovChain::generateFromFile(std::string fileName)
     std::queue<std::string> stringQueue;
     while(file >> word)
     {
+        std::transform(word.begin(), word.end(), word.begin(), ::tolower);
         char wordStart = word[0];
         char wordEnding = word[word.size() -1];
         if(wordStart == '"' || wordStart == '(')
@@ -164,6 +166,7 @@ void MarkovChain::generateFromFile(std::string fileName)
         }
     }
 }
+
 bool MarkovChain::generateText(std::string seedWord)
 {
     std::string currentWordString = seedWord;
@@ -235,4 +238,5 @@ void MarkovChain::removeFromMap(std::string word)
 {
     wordList.erase(word);
 }
+
 

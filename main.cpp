@@ -64,15 +64,14 @@ int main()
                 else
                 {
                     cout << "Sorry that word does not appear in the sample file! ";
-                    cout << "Please choose a different word" << endl;
+                    cout << "Please choose a different starting word" << endl;
                 }
 
-                cout << "Y or y allows another generation. "
-                     << "any other quits" << endl;
+                cout << "Enter 'y' or 'Y' to generate another file." << endl;
                 getline(cin, ans);
             }
             while ( "y" == ans || "Y" == ans );
-            cout << "All done." << endl;
+            cout << "All done!" << endl;
             break;
 
 
