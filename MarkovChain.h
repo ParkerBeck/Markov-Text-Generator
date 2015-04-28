@@ -31,7 +31,7 @@ class MarkovChain
         bool generateText(std::string seedWord);
         void generateFromFile(std::string fileName);
         void removeFromMap(std::string word);
-
+        double probabilityOfAppearance(int index, std::vector<NextWord> nextWords);
     protected:
     private:
         std::map<std::string, Word> wordList;
