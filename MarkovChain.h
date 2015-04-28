@@ -32,6 +32,7 @@ class MarkovChain
         void generateFromFile(std::string fileName);
         void removeFromMap(std::string word);
         double probabilityOfAppearance(int index, std::vector<NextWord> nextWords);
+        std::string mostUsedNextWord(std::vector<NextWord> nextwords);
     protected:
     private:
         std::map<std::string, Word> wordList;

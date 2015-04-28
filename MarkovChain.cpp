@@ -84,6 +84,7 @@ int MarkovChain::nextAppearanceSum(std::vector<NextWord> nextWords)
     return sum;
 }
 
+
 double MarkovChain::probabilityOfAppearance(int index, std::vector<NextWord> nextWords)
 {
     return (double)nextWords[index].appearanceCount/nextAppearanceSum(nextWords);
@@ -195,15 +196,14 @@ bool MarkovChain::generateText(std::string seedWord)
         {
             if(randNum < probabilityOfAppearance(i, currentWord->nextWords))
             {
-                std::string temp = currentWordString;
-                currentWordString = currentWord->nextWords[i].word;
-                if(temp != ".")
+                //std::string currentWordString = currentWordString;
+                if(currentWordString != ".")
                 {
                     if(startOfLine == true)
                     {
-                        temp[0] = toupper(temp[0]);
-                        cout<<temp;
-                        out<<temp;
+                        currentWordString[0] = toupper(currentWordString[0]);
+                        cout<<currentWordString;
+                        out<<currentWordString;
                         startOfLine = false;
                         sentenceStart = false;
                     }/*
@@ -216,18 +216,19 @@ bool MarkovChain::generateText(std::string seedWord)
                     }*/
                     else
                     {
-                        cout<<" "<<temp;
-                        out<<" "<<temp;
+                        cout<<" "<<currentWordString;
+                        out<<" "<<currentWordString;
                     }
                 }
                 else
                 {
-                    cout<<temp<<endl;
-                    out<<temp<<endl;
+                    cout<<currentWordString<<endl;
+                    out<<currentWordString<<endl;
                     sentences++;
                     sentenceStart = true;
                     startOfLine = true;
                 }
+                currentWordString = currentWord->nextWords[i].word;
                 break;
             }
             randNum -= probabilityOfAppearance(i, currentWord->nextWords);
@@ -242,6 +243,23 @@ bool MarkovChain::generateText(std::string seedWord)
 void MarkovChain::removeFromMap(std::string word)
 {
     wordList.erase(word);
+}
+
+string MarkovChain::mostUsedNextWord(std::vector<NextWord> nextWords)
+{
+    int currentMax = 0;
+    int totalMax = 0;
+    std::string usedWord;
+    for(int i = 0; i < nextWords.size(); i++)
+    {
+        currentMax = nextWords[i].appearanceCount;
+        if(currentMax > totalMax)
+        {
+            totalMax = currentMax;
+            usedWord = nextWords[i].word;
+        }
+    }
+    return usedWord;
 }
 
 

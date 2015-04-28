@@ -21,7 +21,7 @@
 	<vector>
 	<string>
 
-1430201426 source:/home/user/BECK_CSCI2270_FinalProject/MarkovChain.cpp
+1430239630 source:/home/user/BECK_CSCI2270_FinalProject/MarkovChain.cpp
 	"MarkovChain.h"
 	<map>
 	<vector>
@@ -31,13 +31,14 @@
 	<sstream>
 	<random>
 	<time.h>
+	<algorithm>
 
-1430201594 /home/user/BECK_CSCI2270_FinalProject/MarkovChain.h
+1430239656 /home/user/BECK_CSCI2270_FinalProject/MarkovChain.h
 	<map>
 	<vector>
 	<string>
 
-1430201502 source:/home/user/BECK_CSCI2270_FinalProject/main.cpp
+1430239542 source:/home/user/BECK_CSCI2270_FinalProject/main.cpp
 	<iostream>
 	<string>
 	"MarkovChain.h"
