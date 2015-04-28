@@ -30,6 +30,7 @@ class MarkovChain
         int nextAppearanceSum(std::vector<NextWord> nextWords);
         bool generateText(std::string seedWord);
         void generateFromFile(std::string fileName);
+        void removeFromMap(std::string word);
 
     protected:
     private:

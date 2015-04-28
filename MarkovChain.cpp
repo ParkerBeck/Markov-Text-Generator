@@ -230,3 +230,9 @@ bool MarkovChain::generateText(std::string seedWord)
     out.close();
     return true;
 }
+
+void MarkovChain::removeFromMap(std::string word)
+{
+    wordList.erase(word);
+}
+

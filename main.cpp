@@ -5,11 +5,13 @@ using namespace std;
 
 int main()
 {
+    string ans;
     MarkovChain *mc = new MarkovChain();
     std::string userInput;
     bool program = true;
     bool fileGenerated = false;
     bool textGenerated = false;
+
     while(program)
     {
         if(!fileGenerated)
@@ -50,18 +52,29 @@ int main()
         }
         else
         {
-            cout << "What word do you want to start the generation?"<<endl;
-            getline(cin, userInput);
-            if(mc->generateText(userInput))
+            do
             {
-                cout << "File generated under: " << userInput << ".txt" << endl;
-                program = false;
+                cout << "What word do you want to start the generation?"<<endl;
+                getline(cin, userInput);
+                if(mc->generateText(userInput))
+                {
+                    cout << "File generated under: " << userInput << ".txt" << endl;
+                    program = false;
+                }
+                else
+                {
+                    cout << "Sorry that word does not appear in the sample file! ";
+                    cout << "Please choose a different word" << endl;
+                }
+
+                cout << "Y or y allows another generation. "
+                     << "any other quits" << endl;
+                getline(cin, ans);
             }
-            else
-            {
-                cout << "Sorry that word does not appear in the sample file! ";
-                cout << "Please choose a different word" << endl;
-            }
+            while ( "y" == ans || "Y" == ans );
+            cout << "All done." << endl;
+            break;
+
 
         }
     }

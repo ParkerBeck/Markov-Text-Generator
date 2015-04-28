@@ -19,7 +19,7 @@
 	<vector>
 	<string>
 
-1430029612 source:/home/user/BECK_CSCI2270_FinalProject/MarkovChain.cpp
+1430201426 source:/home/user/BECK_CSCI2270_FinalProject/MarkovChain.cpp
 	"MarkovChain.h"
 	<map>
 	<vector>
@@ -27,13 +27,15 @@
 	<queue>
 	<fstream>
 	<sstream>
+	<random>
+	<time.h>
 
-1430026087 /home/user/BECK_CSCI2270_FinalProject/MarkovChain.h
+1430201594 /home/user/BECK_CSCI2270_FinalProject/MarkovChain.h
 	<map>
 	<vector>
 	<string>
 
-1430029118 source:/home/user/BECK_CSCI2270_FinalProject/main.cpp
+1430201502 source:/home/user/BECK_CSCI2270_FinalProject/main.cpp
 	<iostream>
 	<string>
 	"MarkovChain.h"
