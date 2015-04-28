@@ -196,7 +196,6 @@ bool MarkovChain::generateText(std::string seedWord)
         {
             if(randNum < probabilityOfAppearance(i, currentWord->nextWords))
             {
-                //std::string currentWordString = currentWordString;
                 if(currentWordString != ".")
                 {
                     if(startOfLine == true)

@@ -17,11 +17,11 @@ int main()
         if(!fileGenerated)
         {
             cout<< "Which sample file do you want to generate from?"<<endl;
-            cout<< "1. testFile1" <<endl;
-            cout<< "2. testFile2" <<endl;
-            cout<< "3. " <<endl;
-            cout<< "4. " <<endl;
-            cout<< "5. " <<endl;
+            cout<< "1. Harry Potter" <<endl;
+            cout<< "2. Wikipedia: Banana" <<endl;
+            cout<< "3. The Lorax" <<endl;
+            cout<< "4. What Teachers Make" <<endl;
+            cout<< "5. The Great Dictator Speech" <<endl;
 
             getline(cin, userInput);
             if(userInput == "1")
@@ -36,7 +36,7 @@ int main()
             }
             else if(userInput == "3")
             {
-                mc->generateFromFile("testFile4.txt");
+                mc->generateFromFile("testFile3.txt");
                 fileGenerated = true;
             }
             else if(userInput == "4")
@@ -46,7 +46,7 @@ int main()
             }
             else if(userInput == "5")
             {
-                mc->generateFromFile("testFile4.txt");
+                mc->generateFromFile("testFile5.txt");
                 fileGenerated = true;
             }
         }
