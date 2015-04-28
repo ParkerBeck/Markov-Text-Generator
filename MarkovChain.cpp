@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <random>
+#include <time.h>
 using namespace std;
 
 MarkovChain::MarkovChain()
@@ -174,27 +175,58 @@ bool MarkovChain::generateText(std::string seedWord)
     int maxSentences = nextAppearanceSum(findWord(".")->nextWords)+1;
     int sentences = 0;
     std::ofstream out(currentWordString);
+    bool sentenceStart = false;
+    bool startOfText = true;
+    srand (time(NULL));
+    currentWordString[0] = toupper(currentWordString[0]);
     while(sentences<maxSentences)
     {
-        out<<currentWordString<< " ";
         double randNum = ((double) rand() / (RAND_MAX));
         int tot = nextAppearanceSum(currentWord->nextWords);
         for(int i = 0; i < currentWord->nextWords.size(); i++)
         {
             if(randNum < (double)currentWord->nextWords[i].appearanceCount/tot)
             {
+                std::string temp = currentWordString;
                 currentWordString = currentWord->nextWords[i].word;
-                cout<<currentWordString<<endl;
+                if(temp != ".")
+                {
+                    if(startOfText == true)
+                    {
+                        temp[0] = toupper(temp[0]);
+                        cout<<temp;
+                        out<<temp;
+                        startOfText = false;
+                        sentenceStart = false;
+                    }
+                    else if(sentenceStart == true)
+                    {
+                        temp[0] = toupper(temp[0]);
+                        cout<<" "<<temp;
+                        out<<" "<<temp;
+                        sentenceStart = false;
+                    }
+                    else
+                    {
+                        cout<<" "<<temp;
+                        out<<" "<<temp;
+                    }
+                }
+                else
+                {
+                    cout<<temp<<endl;
+                    out<<temp<<endl;
+                    sentences++;
+                    sentenceStart = true;
+                    startOfText = true;
+                }
                 break;
             }
             randNum = randNum - (double)currentWord->nextWords[i].appearanceCount/tot;
-
-        }
-        if(currentWordString == "."){
-            sentences++;
         }
         currentWord = findWord(currentWordString);
     }
+    cout<<endl;
     out.close();
     return true;
 }
