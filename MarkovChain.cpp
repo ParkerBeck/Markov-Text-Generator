@@ -153,6 +153,15 @@ void MarkovChain::generateFromFile(std::string fileName)
             incNextWord(word, nextWord);
         }
     }
+    Word* periodPtr = findWord(".");
+    if(periodPtr != NULL)
+    {
+        int index = findNextWord(".", periodPtr->nextWords);
+        if(index != -1)
+        {
+            periodPtr->nextWords.erase(periodPtr->nextWords.begin()+ index);
+        }
+    }
 }
 bool MarkovChain::generateText(std::string seedWord)
 {
