@@ -20,142 +20,165 @@ struct Word
 
 class MarkovChain
 {
-    public:
-        MarkovChain();
-        virtual ~MarkovChain();
-        /*
-        Function prototype:
-            void addWord(string)
-        Function description:
-            This function adds a word to the graph.
-        Example:
-            addWord("Turtle")
-        Precondition:
+public:
+    MarkovChain();
+    virtual ~MarkovChain();
+    /*
+    Function prototype:
+        void addWord(string)
+    Function description:
+        This function adds a word(string) to the graph.
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        addWord("Turtle")
+    Precondition:
+        a empty map "wordList"
+        generateFromFile already been called
 
-        Postcondition:
+    Postcondition:
+        words added to the map "wordList"
 
-        */
-        void addWord(std::string word);
-        /*
-        Function prototype:
-            void incNextWord(string, string)
-        Function description:
+    */
+    void addWord(std::string word);
+    /*
+    Function prototype:
+        void incNextWord(string, string)
+    Function description:
+        after the fist word has been added, find and add next word. if next word does
+        not exist we create a new word as next word. and add them to the "wordList"
 
-        Example:
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc->incNextWord("title", "the");
 
-        Precondition:
+    Precondition:
+        generateFromFile already been called and
+        the word is exist
+    Postcondition:
+        get and add next word,
+    */
+    void incNextWord(std::string word, std::string nextWord);
+    /*
+    Function prototype:
+        Word* findWord(string)
+    Function description:
+        finds the word in the word list
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc->findWord("the")
+    Precondition:
+        generateFromFile already been called
+    Postcondition:
+        return the point to the string word you give
+    */
+    Word* findWord(std::string word);
+    /*
+    Function prototype:
+        int findNextWord(string, vector)
+    Function description:
+        finds a word in another words "next word" list
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        int mc->findNextWord("the", nextWords)
+    Precondition:
+        generateFromFile already been called
 
-        Postcondition:
+    Postcondition:
+        return next word structure associate with the next word vector
+    */
+    int findNextWord(std::string word, std::vector<NextWord> nextWords);
+    /*
+    Function prototype:
+        int nextAppearanceSum(vector)
+    Function description:
+        finds the total amount of words after another word.
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        int mc->findNextWord("word", word)
+    Precondition:
+        generateFromFile already been called and a vector nextWords are given
+    Postcondition:
+        returns a integer
+    */
+    int nextAppearanceSum(std::vector<NextWord> nextWords);
+    /*
+    Function prototype:
+        bool generateText(string)
+    Function description:
+        The function generates all of the next from the original text by randomly selecting another word to follow the current word.
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc->generateText(userInput)
+    Precondition:
+        the word (a string) giving by user is exist in file
+        words already been get from the file
 
-        */
-        void incNextWord(std::string word, std::string nextWord);
-        /*
-        Function prototype:
-            Word* findWord(string)
-        Function description:
-            finds the word in the word list
-        Example:
+    Postcondition:
+        take all the words and make a output file
+    */
+    bool generateText(std::string seedWord);
+    /*
+    Function prototype:
+        void generateFromFile(string);
+    Function description:
+        by giving the file and file's name, get words from file.
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc-> generateFromFile("file.txt")
+    Precondition:
+        file exist with right users input of choosing files.
+        file opens correctly
 
-        Precondition:
+    Postcondition:
+        finding and getting (string) words from the file
+    */
+    void generateFromFile(std::string fileName);
+    /*
+    Function prototype:
+        void removeFromMap(string)
+    Function description:
+        remove a giving string from map "wordList"
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc->removeFromMap("the")
+    Precondition: the word already exist in the map
 
-        Postcondition:
+    Postcondition: deleting a string from map
 
-        */
-        Word* findWord(std::string word);
-        /*
-        Function prototype:
-            int findNextWord(string, vector)
-        Function description:
-            finds a word in another words "next word" list
-        Example:
+    */
+    void removeFromMap(std::string word);
+    /*
+    Function prototype:
+        double probabilityOfAppearance(int, vector)
+    Function description:
+        calculate the probability of appearance of a word
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        double mc-> probabilityOfAppearance(2, nextWords)
+    Precondition: a existing nextWord
 
-        Precondition:
+    Postcondition:
+        return a double index
 
-        Postcondition:
+    */
+    double probabilityOfAppearance(int index, std::vector<NextWord> nextWords);
+    /*
+    Function prototype:
+        string mostUsedNextWord(vector)
+    Function description:
+        finding the most used next word
+    Example:
+        MarkovChain *mc = new MarkovChain();
+        mc->mostUsedNextWord(nextWords)
+    Precondition:a existing nextWord
 
-        */
-        int findNextWord(std::string word, std::vector<NextWord> nextWords);
-        /*
-        Function prototype:
-            int nextAppearanceSum(vector)
-        Function description:
-            finds the total amount of words after another word.
-        Example:
+    Postcondition: return a string
 
-        Precondition:
-
-        Postcondition:
-
-        */
-        int nextAppearanceSum(std::vector<NextWord> nextWords);
-        /*
-        Function prototype:
-            bool generateText(string)
-        Function description:
-            The function generates all of the next from the original text by randomly selecting another word to follow the current word.
-        Example:
-
-        Precondition:
-
-        Postcondition:
-
-        */
-        bool generateText(std::string seedWord);
-        /*
-        Function prototype:
-            void generateFromFile(string);
-        Function description:
-
-        Example:
-
-        Precondition:
-
-        Postcondition:
-
-        */
-        void generateFromFile(std::string fileName);
-        /*
-        Function prototype:
-            void removeFromMap(string)
-        Function description:
-
-        Example:
-
-        Precondition:
-
-        Postcondition:
-
-        */
-        void removeFromMap(std::string word);
-        /*
-        Function prototype:
-            double probabilityOfAppearance(int, vector)
-        Function description:
-
-        Example:
-
-        Precondition:
-
-        Postcondition:
-
-        */
-        double probabilityOfAppearance(int index, std::vector<NextWord> nextWords);
-        /*
-        Function prototype:
-            string mostUsedNextWord(vector)
-        Function description:
-
-        Example:
-
-        Precondition:
-
-        Postcondition:
-
-        */
-        std::string mostUsedNextWord(std::vector<NextWord> nextwords);
-    protected:
-    private:
-        std::map<std::string, Word> wordList;
+    */
+    std::string mostUsedNextWord(std::vector<NextWord> nextwords);
+protected:
+private:
+    std::map<std::string, Word> wordList;
 
 };
 
