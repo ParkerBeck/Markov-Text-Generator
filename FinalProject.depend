@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1430214344 source:c:\users\other people\beck_csci2270_finalproject\main.cpp
+1430469489 source:c:\users\other people\beck_csci2270_finalproject\main.cpp
 	<iostream>
 	<string>
 	"MarkovChain.h"
 
-1430216868 source:c:\users\other people\beck_csci2270_finalproject\markovchain.cpp
+1430469505 source:c:\users\other people\beck_csci2270_finalproject\markovchain.cpp
 	"MarkovChain.h"
 	<map>
 	<vector>
@@ -16,7 +16,7 @@
 	<time.h>
 	<algorithm>
 
-1430222373 c:\users\other people\beck_csci2270_finalproject\markovchain.h
+1430468079 c:\users\other people\beck_csci2270_finalproject\markovchain.h
 	<map>
 	<vector>
 	<string>

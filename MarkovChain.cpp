@@ -20,6 +20,43 @@ MarkovChain::~MarkovChain()
     //dtor
 }
 
+
+
+void MarkovChain::printMostCommon(int number)
+{
+    std::vector<string> addedWords;
+
+    for(int i = 0; i < number && i < wordList.size(); i++)
+    {
+        std::string currentMaxWord = "";
+        int currentMaxCount = 0;
+        for (auto const& w : wordList)
+        {
+            int currentCount = nextAppearanceSum(w.second.nextWords);
+            if(currentCount > currentMaxCount)
+            {
+                if(std::find(addedWords.begin(), addedWords.end(), w.first) == addedWords.end())
+                {
+                    currentMaxWord = w.first;
+                    currentMaxCount = currentCount;
+                }
+            }
+        }
+        addedWords.push_back(currentMaxWord);
+    }
+    for(int i = 0; i < addedWords.size(); i++)
+    {
+        cout << addedWords[i] << "; ";
+        if(i % 4 == 3)
+        {
+            cout << endl;
+        }
+    }
+    cout << endl;
+
+}
+
+
 void MarkovChain::addWord(std::string wordString)
 {
     wordList[wordString] = Word();

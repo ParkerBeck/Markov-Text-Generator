@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    string ans;
+    std::string ans = "Y";
     MarkovChain *mc = new MarkovChain();
     std::string userInput;
     bool program = true;
@@ -54,27 +54,33 @@ int main()
         {
             do
             {
-                cout << "What word do you want to start the generation?"<<endl;
+                cout << "What word do you want to start the generation? Enter '?' for suggestions. "<<endl;
                 getline(cin, userInput);
-                if(mc->generateText(userInput))
+                if(userInput == "?")
                 {
-                    cout << "File generated under: " << userInput << ".txt" << endl;
-                    program = false;
+                    cout << "Some suggested starting words are: " << endl;
+                    mc->printMostCommon(10);
                 }
                 else
                 {
-                    cout << "Sorry that word does not appear in the sample file! ";
-                    cout << "Please choose a different starting word" << endl;
-                }
+                    if(mc->generateText(userInput))
+                    {
+                        cout << "File generated under: " << userInput << ".txt" << endl;
+                        program = false;
+                    }
+                    else
+                    {
+                        cout << "Sorry that word does not appear in the sample file! ";
+                        cout << "Please choose a different starting word" << endl;
+                    }
 
-                cout << "Enter 'y' or 'Y' to generate another file." << endl;
-                getline(cin, ans);
+                    cout << "Enter 'y' or 'Y' to generate another file." << endl;
+                    getline(cin, ans);
+                }
             }
             while ( "y" == ans || "Y" == ans );
             cout << "All done!" << endl;
             break;
-
-
         }
     }
 

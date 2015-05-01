@@ -176,6 +176,9 @@ public:
 
     */
     std::string mostUsedNextWord(std::vector<NextWord> nextwords);
+
+    void printMostCommon(int number);
+
 protected:
 private:
     std::map<std::string, Word> wordList;
