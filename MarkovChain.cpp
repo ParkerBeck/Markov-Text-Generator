@@ -220,7 +220,7 @@ bool MarkovChain::generateText(std::string seedWord)
     }
     int maxSentences = nextAppearanceSum(findWord(".")->nextWords)+1;
     int sentences = 0;
-    std::ofstream out(currentWordString);
+    std::ofstream out(".\\Output\\" + currentWordString + ".txt");
     bool sentenceStart = false;
     bool startOfLine = true;
     srand (time(NULL));
@@ -272,7 +272,6 @@ bool MarkovChain::generateText(std::string seedWord)
         currentWord = findWord(currentWordString);
     }
     cout<<endl;
-    out.close();
     return true;
 }
 
