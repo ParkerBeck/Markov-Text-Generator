@@ -179,6 +179,10 @@ public:
 
     void printMostCommon(int number);
 
+	void clearWordList();
+
+	bool isEmpty();
+
 protected:
 private:
     std::map<std::string, Word> wordList;

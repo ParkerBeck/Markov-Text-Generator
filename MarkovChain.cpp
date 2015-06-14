@@ -21,12 +21,17 @@ MarkovChain::~MarkovChain()
 }
 
 
+void MarkovChain::clearWordList()
+{
+	wordList.clear();
+}
 
 void MarkovChain::printMostCommon(int number)
 {
     std::vector<string> addedWords;
-
-    for(int i = 0; i < number && i < wordList.size(); i++)
+	//Prints until it reaches the desired number or runs out of words
+	int limit = min(number, (int)wordList.size());
+    for(size_t i = 0; i < limit; i++)
     {
         std::string currentMaxWord = "";
         int currentMaxCount = 0;
@@ -44,7 +49,7 @@ void MarkovChain::printMostCommon(int number)
         }
         addedWords.push_back(currentMaxWord);
     }
-    for(int i = 0; i < addedWords.size(); i++)
+    for(size_t i = 0; i < addedWords.size(); i++)
     {
         cout << addedWords[i] << "; ";
         if(i % 4 == 3)
@@ -101,7 +106,7 @@ Word* MarkovChain::findWord(std::string word)
 
 int MarkovChain::findNextWord(std::string nextWord, std::vector<NextWord> nextWords)
 {
-    for(int i = 0; i < nextWords.size(); i++)
+    for(size_t i = 0; i < nextWords.size(); i++)
     {
         if(nextWords[i].word == nextWord)
         {
@@ -114,7 +119,7 @@ int MarkovChain::findNextWord(std::string nextWord, std::vector<NextWord> nextWo
 int MarkovChain::nextAppearanceSum(std::vector<NextWord> nextWords)
 {
     int sum = 0;
-    for(int i = 0; i < nextWords.size(); i++)
+    for(size_t i = 0; i < nextWords.size(); i++)
     {
         sum += nextWords[i].appearanceCount;
     }
@@ -229,7 +234,7 @@ bool MarkovChain::generateText(std::string seedWord)
     {
         double randNum = (double) rand() / RAND_MAX;
         int tot = nextAppearanceSum(currentWord->nextWords);
-        for(int i = 0; i < currentWord->nextWords.size(); i++)
+        for(size_t i = 0; i < currentWord->nextWords.size(); i++)
         {
             if(randNum < probabilityOfAppearance(i, currentWord->nextWords))
             {
@@ -285,7 +290,7 @@ string MarkovChain::mostUsedNextWord(std::vector<NextWord> nextWords)
     int currentMax = 0;
     int totalMax = 0;
     std::string usedWord;
-    for(int i = 0; i < nextWords.size(); i++)
+    for(size_t i = 0; i < nextWords.size(); i++)
     {
         currentMax = nextWords[i].appearanceCount;
         if(currentMax > totalMax)
@@ -297,4 +302,7 @@ string MarkovChain::mostUsedNextWord(std::vector<NextWord> nextWords)
     return usedWord;
 }
 
-
+bool MarkovChain::isEmpty()
+{
+	return wordList.size() == 0;
+}
