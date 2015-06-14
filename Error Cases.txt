@@ -1,5 +1,0 @@
-needs at least two sentences to function.
-Problem's with apostropes.
-super long it seg faults.
-elipses cause multiple spaces.
-anything before a period causes it to look funny when printed.
